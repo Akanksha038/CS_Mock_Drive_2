@@ -1,0 +1,89 @@
+Question Summary:
+
+Consider a string, sentence, consisting of words separated by spaces. 
+Each word is a substring consisting of English alphabetic letters only. 
+The task is to find the first word in the sentence that has a length which is both an even number and 
+greater than or equal to the length of any other word of even length in the sentence. If there are multiple words meeting the criteria, return the one which occurs first in the sentence.
+
+Function to Implement:
+
+cpp
+Copy code
+string longestEvenWord(string sentence);
+Function Description:
+
+The function longestEvenWord takes a single parameter:
+sentence: A string representing the sentence.
+Returns:
+A string: The word that is the first occurrence of a string with the maximal even number length, or the string '00' if there are no even length words meeting the criteria.
+Constraints:
+
+Length of sentence: ≤ 10^5
+The sentence string consists of spaces and letters in the range ascii[a-z], ascii[A-Z], ascii[J] only.
+Input Format for Custom Testing:
+
+Input from stdin will be a single line of space-separated strings denoting sentence.
+Examples:
+
+Sample Case 0:
+Input: "It is a pleasant day, today"
+Output: "pleasant"
+Explanation: There are three even length words: "It" (length 2), "is" (length 2), and "pleasant" (length 8). The first occurrence of a word with maximal even number length is "pleasant".
+Sample Case 1:
+Input: "You can do it the way you like like"
+Output: "like"
+Explanation: The word "like" occurs first and has the maximal even number length (length 4).
+
+
+
+
+Solution:
+
+
+#include <iostream>
+#include <sstream>
+#include <string>
+
+using namespace std;
+
+string longestWord(string sentence){
+    istringstream stream(sentence);
+    
+    string word;
+    string found_stringResult="0";
+    int maxLength=0;
+    while(stream>>word){
+        int length=word.length();
+        if(length%2==0 && length>maxLength){
+            if(length>maxLength || found_stringResult=="0"){
+                found_stringResult=word;
+                maxLength=length;
+            }
+        }
+        
+    }
+    
+    return found_stringResult;
+}
+
+int main() {
+    string sentence ;
+    
+    getline(cin,sentence);
+    cout<<longestWord(sentence)<<endl;
+    
+
+    return 0;
+}
+
+
+
+//output
+
+
+
+This is a cute guy and I am meeting this quy on Flashmob
+Flashmob
+
+
+=== Code Execution Successful ===
